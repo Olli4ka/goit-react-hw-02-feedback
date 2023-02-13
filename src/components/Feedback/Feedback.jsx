@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import {Statistics} from './Statistics/Statistics';
 import {FeedbackOptions} from './FeedbackOptions/FeedbackOptions';
 import {Section} from './Section/Section';
-import Notification from './Notification/Notification';
+import {Notification} from './Notification/Notification';
 import { FeedbackContainer } from './Feedback.styled';
 
 export const Feedback = ({
@@ -20,8 +20,11 @@ export const Feedback = ({
         />
       </Section>
 
-      <Section title="Statistics">       
-          
+      <Section title="Statistics">
+        
+        {totalFunction() === 0 ? (
+          <Notification message="There is no feedback" /> 
+        ) : (
             <Statistics
               good={currentState.good}
               neutral={currentState.neutral}
@@ -29,7 +32,7 @@ export const Feedback = ({
               total={totalFunction()}
               positivePercentage={parcentFunction()}
             />
-         
+        )}                  
       </Section>
     </FeedbackContainer>
   );
